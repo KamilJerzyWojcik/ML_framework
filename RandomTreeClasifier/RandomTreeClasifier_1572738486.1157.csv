@@ -1,0 +1,4 @@
+bootstrap,max_depth,max_features,max_leaf_nodes,min_impurity_decrease,min_samples_leaf,min_samples_split,min_weight_fraction_leaf,n_estimators,oob_score,accuracy
+True,,auto,,0,1,2,0,3,False,0.787921348314606
+True,,auto,,0,1,2,0,2,False,0.769662921348314
+True,,auto,,0,1,2,0,1,False,0.7654494382022471

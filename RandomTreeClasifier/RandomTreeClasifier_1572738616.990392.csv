@@ -1,0 +1,5 @@
+n_estimators,max_depth,min_samples_split,min_samples_leaf,min_weight_fraction_leaf,max_features,max_leaf_nodes,min_impurity_decrease,bootstrap,oob_score,accuracy
+"[1, 2, 3]",[None],[2],[1],[0.0],['auto'],[None],[0.0],[True],[False],prediction
+3,,2,1,0.0,auto,,0.0,True,False,0.787921348314606
+2,,2,1,0.0,auto,,0.0,True,False,0.769662921348314
+1,,2,1,0.0,auto,,0.0,True,False,0.7654494382022471
