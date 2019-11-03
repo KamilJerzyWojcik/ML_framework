@@ -1,15 +1,15 @@
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 from .Configuration import Configuration
 from .ModelRegularizationService import ModelRegularizationService
 
 
-
-class RandomForestClassifierTitanic:
+class LogisticRegresionClassifierTitanic:
 
     def __init__ (self):
         self.configuration = Configuration()
-        self.name_estymator = "RandomForestClassifier"
-        self.RegService = ModelRegularizationService(RandomForestClassifier(random_state=42))
+        self.estymator = LogisticRegression(random_state=42)
+        self.name_estymator = "LogisticRegresionClassifier"
+        self.RegService = ModelRegularizationService(LogisticRegression(random_state=42))
 
 
     def approximation(self, train_strat_num_titanic):
@@ -17,27 +17,31 @@ class RandomForestClassifierTitanic:
 
         param_grid_list = [
             {# default values
-                'n_estimators': [10], # int
-                'max_depth': [10], # int / None
-                'min_samples_split': [20], # int / float
-                'min_samples_leaf': [1], # int / float
-                'min_weight_fraction_leaf': [0.], # float
-                'max_features': ["auto"], # int/float/auto/sqrt/log2/None
-                'max_leaf_nodes': [None], # int / None
-                'min_impurity_decrease': [0.], # float
-                'bootstrap': [True],
-                'oob_score': [False], # if bootstrap true
+                'penalty': ['l1'], # ['l1', 'l2', 'elasticnet', 'none']
+                'dual': [False], # [True, False]
+                'tol': [1e-4], # float 
+                'C': [1.0], #float
+                'fit_intercept': [True],
+                'intercept_scaling': [1.0], # float
+                'class_weight': [None], # dct {class_label: weight}
+                'solver': ['liblinear'], # newton-cg’, ‘lbfgs’, ‘liblinear’, ‘sag’, ‘saga’
+                'max_iter': [100], # int
+                'multi_class': ['ovr'], # ‘ovr’, ‘multinomial’, ‘auto’
+                'verbose': [0], # int
+                'warm_start': [False],
+                'l1_ratio': [None] # float, None
             },
         ]
 
         print(f"{self.name_estymator} grid")
         dataframes = []
+
         for param_grid in param_grid_list:
             cv_results = self.RegService.get_grid_results(param_grid, X, y)
             result_grid_df = self.RegService.get_and_save_result_grid_dataframe(param_grid, cv_results, self.name_estymator)
             dataframes.append(result_grid_df)
+        
         return dataframes
-
 
     def approximation_random_grid(self, train_strat_num_titanic, n=100):
         X, y = self.RegService.get_X_and_y(train_strat_num_titanic)
@@ -65,4 +69,7 @@ class RandomForestClassifierTitanic:
             dataframes.append(result_grid_df)
         
         return dataframes
+    
+
+    
     
