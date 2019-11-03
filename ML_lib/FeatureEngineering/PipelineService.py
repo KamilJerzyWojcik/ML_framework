@@ -15,6 +15,9 @@ from .features.pipeline_first.AgeFillNan import AgeFillNan
 from .features.pipeline_first.AgeBinFeature import AgeBinFeature
 from .features.pipeline_first.EmbarkedFillNanFeature import EmbarkedFillNanFeature
 
+from sklearn.preprocessing import StandardScaler
+from IPython.core.display import display
+import pandas as pd
 
 class PipelineService:
 
@@ -47,6 +50,20 @@ class PipelineService:
     def pipeline_first_num(self, dataframe):
         dataframe_transformed = self.pipeline_first(dataframe)
         dataframe_transformed_num = dataframe_transformed.select_dtypes(include=['float64', 'int'])
-        return dataframe_transformed_num
+        
+        cat_cols = ['Survived', 'PassengerId', 'sex_cat']
+
+        pipeline = Pipeline([
+            ('standardScaler', StandardScaler())
+        ])
+        data_to_scaled = dataframe_transformed_num.drop(columns=cat_cols, axis=1)
+        data_to_scaled_cols = data_to_scaled.columns
+
+        scaled_num_array = pipeline.fit_transform(data_to_scaled)
+        scaled_num_df = pd.DataFrame(data=scaled_num_array, columns=list(data_to_scaled_cols))
+
+        scaled_num_df[cat_cols] = dataframe_transformed_num[cat_cols]
+
+        return scaled_num_df
 
 

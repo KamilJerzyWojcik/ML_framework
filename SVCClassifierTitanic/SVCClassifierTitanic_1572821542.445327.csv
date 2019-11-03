@@ -1,0 +1,4 @@
+C,kernel,degree,gamma,coef0,shrinking,probability,tol,max_iter,decision_function_shape,accuracy
+[1.0],['rbf'],"[3, 2]",['auto'],[0.0],[True],[False],[0.001],[-1],['ovr'],prediction
+1.0,rbf,3,auto,0.0,True,False,0.001,-1,ovr,0.8132022471910111
+1.0,rbf,2,auto,0.0,True,False,0.001,-1,ovr,0.8132022471910111

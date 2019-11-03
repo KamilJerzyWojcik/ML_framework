@@ -27,7 +27,8 @@ class ExtraTreesClassifierTitanic:
                 'min_impurity_decrease': [0.], # float
                 'bootstrap': [True],
                 'oob_score': [False], # if bootstrap true
-                'warm_start': [False]
+                'warm_start': [False],
+                'criterion': ['gini'] # entropy, gini
             },
         ]
 

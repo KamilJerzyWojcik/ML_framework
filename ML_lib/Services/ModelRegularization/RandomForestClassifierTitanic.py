@@ -27,6 +27,7 @@ class RandomForestClassifierTitanic:
                 'min_impurity_decrease': [0.], # float
                 'bootstrap': [True],
                 'oob_score': [False], # if bootstrap true
+                'criterion': ['gini'] # entropy, gini
             },
         ]
 

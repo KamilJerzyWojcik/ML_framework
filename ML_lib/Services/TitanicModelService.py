@@ -8,16 +8,19 @@ from sklearn.linear_model import Lasso
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.svm import SVC
+
 
 class TitanicModelService:
-    
-    def __init__ (self):
+
+    def __init__(self):
         self.simple_models = [
-        ('DecisionTreeClassifier', DecisionTreeClassifier()),
-        ('LogisticRegression', LogisticRegression()),
-        ('ExtraTreesClassifier', ExtraTreesClassifier()),
-        ('RandomForestClassifier', RandomForestClassifier()),
-        ('Ridge', RidgeClassifier(alpha=1, solver="cholesky")),
+            ('DecisionTreeClassifier', DecisionTreeClassifier()),
+            ('LogisticRegression', LogisticRegression()),
+            ('ExtraTreesClassifier', ExtraTreesClassifier()),
+            ('RandomForestClassifier', RandomForestClassifier()),
+            ('Ridge', RidgeClassifier(alpha=1, solver="cholesky")),
+            ('SVC', SVC(random_state=42))
         ]
 
         self.final_models = [
@@ -86,47 +89,43 @@ class TitanicModelService:
 
     def titanic_predicts_final_models(self, train_strat_num_titanic, test_strat_num_titanic):
         # rozdzial trenujacych danych na X i y
-        X_train = train_strat_num_titanic.drop(columns=['Survived', 'PassengerId'], axis=1)
+        X_train = train_strat_num_titanic.drop(
+            columns=['Survived', 'PassengerId'], axis=1)
         y_train = train_strat_num_titanic['Survived']
 
         for name, model in self.final_models:
-            # trenowanie modelu
-            model.fit(X_train, y_train)
-
-            # rozdzial testujących danych na X i y
-            X_test = test_strat_num_titanic.drop(columns=['Survived', 'PassengerId'], axis=1)
-            y_test = test_strat_num_titanic['Survived']
-
-            # walidacja modelu
-            accuracy = self.get_predict_accuracy(model, X_test, y_test)
-
+            accuracy = self.fit_predict_model(X_train, y_train, test_strat_num_titanic, model)
             display(f"{name}: accuracy: {accuracy}")
 
-    def titanic_simple_models_final_test(self, train_strat_num_titanic, test_strat_num_titanic):
+    def titanic_predict_simple_models(self, train_strat_num_titanic, test_strat_num_titanic):
         # rozdzial trenujacych danych na X i y
-        X_train = train_strat_num_titanic.drop(columns=['Survived', 'PassengerId'], axis=1)
+        X_train = train_strat_num_titanic.drop(
+            columns=['Survived', 'PassengerId'], axis=1)
         y_train = train_strat_num_titanic['Survived']
 
         for name, model in self.simple_models:
-            # trenowanie modelu
-            model.fit(X_train, y_train)
-
-            # rozdzial testujących danych na X i y
-            X_test = test_strat_num_titanic.drop(columns=['Survived', 'PassengerId'], axis=1)
-            y_test = test_strat_num_titanic['Survived']
-
-            # walidacja modelu
-            accuracy = self.get_predict_accuracy(model, X_test, y_test)
-
+            accuracy = self.fit_predict_model(X_train, y_train, test_strat_num_titanic, model)
             display(f"{name}: accuracy: {accuracy}")
-    
+
+    def fit_predict_model(self, X_train, y_train, test_strat_num_titanic, model):
+        # trenowanie modelu
+        model.fit(X_train, y_train)
+
+        # rozdzial testujących danych na X i y
+        X_test = test_strat_num_titanic.drop(
+            columns=['Survived', 'PassengerId'], axis=1)
+        y_test = test_strat_num_titanic['Survived']
+
+        # walidacja modelu
+        accuracy = self.get_predict_accuracy(model, X_test, y_test)
+        return accuracy
+
     def get_predict_accuracy(self, model, X_test, y_test):
         y_test_prediction = model.predict(X_test)
         return accuracy_score(y_test, y_test_prediction)
 
     def get_final_models(self):
         return self.final_models
-
 
 
 # Best parameters

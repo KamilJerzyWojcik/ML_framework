@@ -1,15 +1,16 @@
 from sklearn.tree import DecisionTreeClassifier
 from .Configuration import Configuration
 from .ModelRegularizationService import ModelRegularizationService
+from sklearn.svm import SVC
 
 
 
-class DecisionTreeClassifierTitanic:
+class SVCClassifierTitanic:
 
     def __init__ (self):
         self.configuration = Configuration()
-        self.name_estymator = "DecisionTreeClassifier"
-        self.RegService = ModelRegularizationService(DecisionTreeClassifier(random_state=42), self.name_estymator)
+        self.name_estymator = "SVCClassifierTitanic"
+        self.RegService = ModelRegularizationService(SVC(random_state=42), self.name_estymator)
 
 
     def approximation(self, train_strat_num_titanic):
@@ -17,15 +18,16 @@ class DecisionTreeClassifierTitanic:
 
         param_grid_list = [
             {# default values
-                'max_depth': [None], # int / None
-                'splitter': ["best", 'random'], # best, random
-                'min_samples_split': [2, 10, 100], # int / float
-                'min_samples_leaf': [1, 10, 100], # int / float
-                'min_weight_fraction_leaf': [0., 0.1, 0.5, 1.0],
-                'max_features': [None, 'auto'], # int/float/auto/sqrt/log2/None
-                'max_leaf_nodes': [None], # int / None
-                'min_impurity_decrease': [0.],
-                 'presort': [False]
+                'C': [1.0, 5.0, 0.1, 0.01, 0.001, 10],
+                'kernel': ['rbf', 'linear', 'poly', 'sigmoid'], # linear, poly, rbf, sigmoid, precomputed
+                'degree': [3, 2, 1],
+                'gamma': ['auto', 'scale'], # scale, auto
+                'coef0': [0.0, 1.0, 0.1],
+                'shrinking': [True, False],
+                'probability': [False, True],
+                'tol': [1e-3],
+                'max_iter': [-1],
+                'decision_function_shape': ['ovr', 'ovo'], # ovr, ovo
             },
         ]
 
@@ -42,16 +44,16 @@ class DecisionTreeClassifierTitanic:
         X, y = self.RegService.get_X_and_y_titanic(train_strat_num_titanic)
         param_grid_list = [
             {# default values
-                'max_depth': [None, 2, 10, 20, 50], # int / None
-                'splitter': ["best", 'random'], # best, random
-                'min_samples_split': [2, 10, 100], # int / float
-                'min_samples_leaf': [1, 10, 100], # int / float
-                'min_weight_fraction_leaf': [0., 0.1, 0.5, 0.3],
-                'max_features': [None, 'auto', 'sqrt', 'log2', 1, 5, 10, 0.1, 0.5, 0.8], # int/float/auto/sqrt/log2/None
-                'max_leaf_nodes': [None, 2, 20, 40], # int / None
-                'min_impurity_decrease': [0., 1e-5, 1e-6, 1e-7],
-                'presort': [False, True],
-                'criterion': ['gini'] # entropy, gini
+                'C': [1.0, 5.0, 0.1, 0.01, 0.001, 10, 50, 100],
+                'kernel': ['rbf', 'linear', 'poly', 'sigmoid'], # linear, poly, rbf, sigmoid, precomputed
+                'degree': [3, 2, 1, 4],
+                'gamma': ['auto', 'scale'], # scale, auto
+                'coef0': [0.0, 1.0, 0.1, 10, 0.01, 0.001],
+                'shrinking': [True, False],
+                'probability': [False, True],
+                'tol': [1e-3, 1e-2],
+                'max_iter': [-1],
+                'decision_function_shape': ['ovr', 'ovo'], # ovr, ovo
             },
         ]
 
