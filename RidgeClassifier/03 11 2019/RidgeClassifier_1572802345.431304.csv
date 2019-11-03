@@ -1,0 +1,18 @@
+alpha,fit_intercept,normalize,copy_X,solver,accuracy
+"[0.01, 50.0]","[True, False]","[False, True]","[True, False]",['cholesky'],prediction
+0.01,True,False,True,cholesky,0.803370786516853
+0.01,True,True,True,cholesky,0.803370786516853
+0.01,True,False,False,cholesky,0.803370786516853
+0.01,True,True,False,cholesky,0.803370786516853
+0.01,False,False,True,cholesky,0.8005617977528091
+0.01,False,True,True,cholesky,0.8005617977528091
+0.01,False,False,False,cholesky,0.8005617977528091
+0.01,False,True,False,cholesky,0.8005617977528091
+50.0,True,False,True,cholesky,0.796348314606741
+50.0,False,False,True,cholesky,0.796348314606741
+50.0,False,True,True,cholesky,0.796348314606741
+50.0,True,False,False,cholesky,0.796348314606741
+50.0,False,False,False,cholesky,0.796348314606741
+50.0,False,True,False,cholesky,0.796348314606741
+50.0,True,True,True,cholesky,0.625
+50.0,True,True,False,cholesky,0.625

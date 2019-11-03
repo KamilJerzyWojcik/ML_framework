@@ -9,11 +9,11 @@ class RandomForestClassifierTitanic:
     def __init__ (self):
         self.configuration = Configuration()
         self.name_estymator = "RandomForestClassifier"
-        self.RegService = ModelRegularizationService(RandomForestClassifier(random_state=42))
+        self.RegService = ModelRegularizationService(RandomForestClassifier(random_state=42), self.name_estymator)
 
 
     def approximation(self, train_strat_num_titanic):
-        X, y = self.RegService.get_X_and_y(train_strat_num_titanic)
+        X, y = self.RegService.get_X_and_y_titanic(train_strat_num_titanic)
 
         param_grid_list = [
             {# default values
@@ -40,7 +40,7 @@ class RandomForestClassifierTitanic:
 
 
     def approximation_random_grid(self, train_strat_num_titanic, n=100):
-        X, y = self.RegService.get_X_and_y(train_strat_num_titanic)
+        X, y = self.RegService.get_X_and_y_titanic(train_strat_num_titanic)
         param_grid_list = [
             {# default values
                 'n_estimators': [1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 16], # int

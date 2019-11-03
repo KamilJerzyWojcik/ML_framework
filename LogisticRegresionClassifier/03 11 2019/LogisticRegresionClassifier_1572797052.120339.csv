@@ -1,0 +1,5 @@
+penalty,dual,tol,C,fit_intercept,intercept_scaling,class_weight,solver,max_iter,multi_class,verbose,warm_start,l1_ratio,accuracy
+['l2'],[False],[0.0001],[1.0],[True],[1.0],[None],['liblinear'],"[10, 100, 1000]",['ovr'],[0],[False],[None],prediction
+l2,False,0.0001,1.0,True,1.0,,liblinear,100,ovr,0,False,,0.803370786516853
+l2,False,0.0001,1.0,True,1.0,,liblinear,1000,ovr,0,False,,0.803370786516853
+l2,False,0.0001,1.0,True,1.0,,liblinear,10,ovr,0,False,,0.8019662921348311

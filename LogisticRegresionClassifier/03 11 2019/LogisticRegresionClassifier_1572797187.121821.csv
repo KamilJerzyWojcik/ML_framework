@@ -1,0 +1,8 @@
+penalty,dual,tol,C,fit_intercept,intercept_scaling,class_weight,solver,max_iter,multi_class,verbose,warm_start,l1_ratio,accuracy
+['l1'],[False],[0.0001],[1.0],[True],[1.0],[None],['saga'],"[1000, 10000]",['ovr'],[0],[False],"[0, 0.1, 0.01]",prediction
+l1,False,0.0001,1.0,True,1.0,,saga,10000,ovr,0,False,0,0.782303370786516
+l1,False,0.0001,1.0,True,1.0,,saga,10000,ovr,0,False,0.1,0.782303370786516
+l1,False,0.0001,1.0,True,1.0,,saga,10000,ovr,0,False,0.01,0.782303370786516
+l1,False,0.0001,1.0,True,1.0,,saga,1000,ovr,0,False,0,0.742977528089887
+l1,False,0.0001,1.0,True,1.0,,saga,1000,ovr,0,False,0.1,0.742977528089887
+l1,False,0.0001,1.0,True,1.0,,saga,1000,ovr,0,False,0.01,0.742977528089887

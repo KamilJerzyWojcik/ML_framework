@@ -8,9 +8,10 @@ from sklearn.model_selection import RandomizedSearchCV
 
 
 class ModelRegularizationService:
-    def __init__(self, estymator):
+    def __init__(self, estymator, path_save):
         self.configuration = Configuration()
         self.estymator = estymator
+        self.path_save = path_save
 
     def show_results(self, cv_results, param_show):
         display_result = []
@@ -25,10 +26,10 @@ class ModelRegularizationService:
 
     def save_results(self, result_df, name):
         current_time = time.time()
-        result_df.to_csv(f"RandomTreeClasifier/{name}_{current_time}.csv", index=False)
+        result_df.to_csv(f"{self.path_save}/{name}_{current_time}.csv", index=False)
 
 
-    def get_X_and_y(self, train_strat_num_titanic):
+    def get_X_and_y_titanic(self, train_strat_num_titanic):
         X_train = train_strat_num_titanic.drop(columns=['Survived', 'PassengerId'], axis=1)
         y_train = train_strat_num_titanic['Survived']
         return X_train, y_train

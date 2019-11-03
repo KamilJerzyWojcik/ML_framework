@@ -1,0 +1,3 @@
+penalty,dual,tol,C,fit_intercept,intercept_scaling,class_weight,solver,max_iter,multi_class,verbose,warm_start,l1_ratio,accuracy
+['elasticnet'],[False],[0.01],[1.0],[True],[10.0],[None],['saga'],[100],['multinomial'],[0],[True],[0.1],prediction
+elasticnet,False,0.01,1.0,True,10.0,,saga,100,multinomial,0,True,0.1,0.702247191011236

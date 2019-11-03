@@ -1,0 +1,11 @@
+penalty,dual,tol,C,fit_intercept,intercept_scaling,class_weight,solver,max_iter,multi_class,verbose,warm_start,l1_ratio,accuracy
+['elasticnet'],[False],[0.0001],[1.0],[True],[1.0],[None],['saga'],"[10, 100, 1000]",['ovr'],[0],[False],"[0, 0.1, 0.01]",prediction
+elasticnet,False,0.0001,1.0,True,1.0,,saga,1000,ovr,0,False,0,0.7443820224719101
+elasticnet,False,0.0001,1.0,True,1.0,,saga,1000,ovr,0,False,0.1,0.7443820224719101
+elasticnet,False,0.0001,1.0,True,1.0,,saga,1000,ovr,0,False,0.01,0.7443820224719101
+elasticnet,False,0.0001,1.0,True,1.0,,saga,100,ovr,0,False,0,0.683988764044943
+elasticnet,False,0.0001,1.0,True,1.0,,saga,100,ovr,0,False,0.1,0.683988764044943
+elasticnet,False,0.0001,1.0,True,1.0,,saga,100,ovr,0,False,0.01,0.683988764044943
+elasticnet,False,0.0001,1.0,True,1.0,,saga,10,ovr,0,False,0,0.662921348314606
+elasticnet,False,0.0001,1.0,True,1.0,,saga,10,ovr,0,False,0.1,0.662921348314606
+elasticnet,False,0.0001,1.0,True,1.0,,saga,10,ovr,0,False,0.01,0.662921348314606

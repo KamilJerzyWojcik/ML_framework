@@ -1,0 +1,3 @@
+alpha,fit_intercept,normalize,copy_X,max_iter,solver,accuracy
+[10.0],[False],[False],[True],[10],['sparse_cg'],prediction
+10.0,False,False,True,10,sparse_cg,0.814606741573033

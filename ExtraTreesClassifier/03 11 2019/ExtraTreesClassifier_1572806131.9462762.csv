@@ -1,0 +1,6 @@
+n_estimators,max_depth,min_samples_split,min_samples_leaf,min_weight_fraction_leaf,max_features,max_leaf_nodes,min_impurity_decrease,bootstrap,oob_score,warm_start,accuracy
+[50],[10],[10],[1],[0.0],['sqrt'],[None],[0.0],"[True, False]",[False],"[False, False]",prediction
+50,10,10,1,0.0,sqrt,,0.0,True,False,False,0.832865168539325
+50,10,10,1,0.0,sqrt,,0.0,True,False,False,0.832865168539325
+50,10,10,1,0.0,sqrt,,0.0,False,False,False,0.823033707865168
+50,10,10,1,0.0,sqrt,,0.0,False,False,False,0.823033707865168
