@@ -5,11 +5,13 @@ import json
 from IPython.core.display import display
 import pandas as pd
 import time
+from .Configuration import Configuration
 
 
 class RandomForestClassifierTitanic:
 
     def __init__ (self):
+        self.configuration = Configuration()
         self.randomForestClassifier = RandomForestClassifier(random_state=42)     
 
     def approximation_1(self, train_strat_num_titanic):
@@ -17,12 +19,12 @@ class RandomForestClassifierTitanic:
 
         param_grid_list = [
             {# default values
-                'n_estimators': [1, 2, 3], # int
-                'max_depth': [None], # int / None
-                'min_samples_split': [2], # int / float
+                'n_estimators': [10], # int
+                'max_depth': [10], # int / None
+                'min_samples_split': [20], # int / float
                 'min_samples_leaf': [1], # int / float
                 'min_weight_fraction_leaf': [0.], # float
-                'max_features': ["auto"], # int/fliat/auto/sqrt/log2/None
+                'max_features': ["auto"], # int/float/auto/sqrt/log2/None
                 'max_leaf_nodes': [None], # int / None
                 'min_impurity_decrease': [0.], # float
                 'bootstrap': [True],
@@ -35,11 +37,10 @@ class RandomForestClassifierTitanic:
 
         for param_grid in param_grid_list:
             param_show = param_grid.copy()
-            param_show['accuracy'] = 'prediction'
+            param_show[self.configuration.scoring] = 'prediction'
 
             for key in list(param_show.keys()):
                 param_show[key] = str(param_show[key])
-            print(param_show)
 
             cv_results = self.get_grid_results(param_grid, X, y)
             df = self.save_and_show_results(cv_results, param_show)
@@ -51,8 +52,8 @@ class RandomForestClassifierTitanic:
     def save_and_show_results(self, cv_results, param_show):
         display_result = []
         display_result.append(param_show)
-        for accuracy, params in sorted(zip(cv_results["mean_test_score"], cv_results["params"]), key=lambda x: x[0], reverse=True):
-            params['accuracy'] = accuracy
+        for scoring, params in sorted(zip(cv_results["mean_test_score"], cv_results["params"]), key=lambda x: x[0], reverse=True):
+            params[self.configuration.scoring] = scoring
             display_result.append(params)
         result_df = pd.read_json(json.dumps(display_result))
         display(result_df)
@@ -66,7 +67,7 @@ class RandomForestClassifierTitanic:
                 self.randomForestClassifier, 
                 [param_grid],
                 cv=3,
-                scoring='accuracy', 
+                scoring=self.configuration.scoring, 
                 return_train_score=True
             )
         gridSearchCV.fit(X, y)
